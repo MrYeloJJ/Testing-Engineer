@@ -85,7 +85,7 @@ class SlotQ4(unittest.TestCase):
             raise
 
     def testG(self):
-        """季度:Slot-2017-Q4,项目:吸血鬼与狼人,环境:PRO,用例:游戏能正常运行"""
+        """季度:Slot-2017-Q4,项目:吸血鬼PK狼人,环境:PRO,用例:游戏能正常运行"""
         data = self.com.get_csv_data(self.csv, 24)
         self.wg.all_agg(",".join(data))
         self.pg.execute_wait_lading()
@@ -107,7 +107,7 @@ class SlotQ4(unittest.TestCase):
             raise
 
     def testI(self):
-        """季度:Slot-2017-Q4,项目:女校足球部,环境:PRO,用例:游戏能正常运行"""
+        """季度:Slot-2017-Q4,项目:女校足球队,环境:PRO,用例:游戏能正常运行"""
         data = self.com.get_csv_data(self.csv, 26)
         self.wg.all_agg(",".join(data))
         self.pg.execute_wait_lading()
@@ -525,7 +525,7 @@ class SlotQ4(unittest.TestCase):
             raise
 
     def testAU(self):
-        """季度:Slot-2017-Q4,项目:红粉女郎,环境:PRO,用例:游戏能正常运行"""
+        """季度:Slot-2017-Q4,项目:粉红女郎,环境:PRO,用例:游戏能正常运行"""
         data = self.com.get_csv_data(self.csv, 64)
         self.wg.all_agg(",".join(data))
         self.pg.execute_wait_lading()
