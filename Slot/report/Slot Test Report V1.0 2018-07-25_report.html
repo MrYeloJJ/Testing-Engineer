@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Slot Test Report</title>
+    <meta name="generator" content="BSTestRunner 0.8.4"/>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    
+<style type="text/css" media="screen">
+
+/* -- css div popup ------------------------------------------------------------------------ */
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #99CCFF;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 10pt;
+    width: 500px;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+
+#show_detail_line .label {
+    font-size: 85%;
+    cursor: pointer;
+}
+
+#show_detail_line {
+    margin: 2em auto 1em auto;
+}
+
+#total_row  { font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+</style>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class="container">
+    <div class='heading'>
+<h1>Slot Test Report</h1>
+<p><strong>Start Time:</strong> 2018-07-25 10:50:24</p>
+<p><strong>Duration:</strong> 0:33:01.947361</p>
+<p><strong>Status:</strong> <span class="text text-success">Pass <strong>60</strong></span> <span class="text text-danger">Failure <strong>4</strong></span> <span class="text text-warning">Error <strong>26</strong></span></p>
+
+<p class='description'>用例执行情况</p>
+</div>
+
+
+    
+<p id='show_detail_line'>
+<span class="label label-primary" onclick="showCase(0)">Summary</span>
+<span class="label label-danger" onclick="showCase(1)">Failed</span>
+<span class="label label-default" onclick="showCase(2)">All</span>
+</p>
+<table id='result_table' class="table">
+    <thead>
+        <tr id='header_row'>
+            <th>Test Group/Test case</td>
+            <th>Count</td>
+            <th>Pass</td>
+            <th>Fail</td>
+            <th>Error</td>
+            <th>View</td>
+        </tr>
+    </thead>
+    <tbody>
+        
+<tr class='text text-warning'>
+    <td>testA.SlotQ3</td>
+    <td>17</td>
+    <td>11</td>
+    <td>3</td>
+    <td>3</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c1',17)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testA: 季度:Slot-2017-Q3,项目:变形金刚,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft1.2' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testB: 季度:Slot-2017-Q3,项目:中世纪特权,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        error</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testA.py", line 35, in testB
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testC: 季度:Slot-2017-Q3,项目:淘金热,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testD: 季度:Slot-2017-Q3,项目:摸金校尉,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testE: 季度:Slot-2017-Q3,项目:66路,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft1.6' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testF: 季度:Slot-2017-Q3,项目:大秦帝国,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        error</a>
+
+    <div id='div_ft1.6' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.6: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testA.py", line 79, in testF
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.7' class='text text-success'>
+    <td class='text text-danger'><div class='testcase'>testG: 季度:Slot-2017-Q3,项目:阿兹特克,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.7')" >
+        fail</a>
+
+    <div id='div_ft1.7' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.7: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testA.py", line 94, in testG
+    self.assertTrue(self.wr.new_record(",".join(data)))
+AssertionError: False is not true
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.8' class='text text-success'>
+    <td class='text text-danger'><div class='testcase'>testH: 季度:Slot-2017-Q3,项目:狂欢,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.8')" >
+        fail</a>
+
+    <div id='div_ft1.8' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.8: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testA.py", line 105, in testH
+    self.assertTrue(self.wr.new_record(",".join(data)))
+AssertionError: False is not true
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.9' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testI: 季度:Slot-2017-Q3,项目:指环王,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.9')" >
+        error</a>
+
+    <div id='div_ft1.9' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.9: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testA.py", line 113, in testI
+    self.pg.execute_wait_lading()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\PlayGame.py", line 55, in execute_wait_lading
+    self.loading_pass()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\PlayGame.py", line 13, in loading_pass
+    self.wait_for_loading_view_showing()
+  File "C:\Users\Administrator\PycharmProjects\Slot\common\Common.py", line 46, in wait_for_loading_view_showing
+    "UIManager.instance.commonView);return loading.isShowing;"
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 543, in execute_script
+    'args': converted_args})['value']
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: TypeError: window.frames[0] is undefined
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.10' class='text text-success'>
+    <td class='text text-danger'><div class='testcase'>testJ: 季度:Slot-2017-Q3,项目:怪物命运,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.10')" >
+        fail</a>
+
+    <div id='div_ft1.10' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.10: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testA.py", line 127, in testJ
+    self.assertTrue(self.wr.new_record(",".join(data)))
+AssertionError: False is not true
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testK: 季度:Slot-2017-Q3,项目:80天旅行,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testL: 季度:Slot-2017-Q3,项目:海盗财富,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testM: 季度:Slot-2017-Q3,项目:封神榜,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testN: 季度:Slot-2017-Q3,项目:荣耀王者,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testO: 季度:Slot-2017-Q3,项目:仙剑,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testP: 季度:Slot-2017-Q3,项目:白蛇传,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testQ: 季度:Slot-2017-Q3,项目:梦游仙境,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr class='text text-warning'>
+    <td>testB.SlotQ4</td>
+    <td>48</td>
+    <td>31</td>
+    <td>1</td>
+    <td>16</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c2',48)">Detail</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testA: 季度:Slot-2017-Q4,项目:瑞狗迎春,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.2' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testAA: 季度:Slot-2017-Q4,项目:印第安,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        error</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.2: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 310, in testAA
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.3' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAB: 季度:Slot-2017-Q4,项目:神秘东方,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAC: 季度:Slot-2017-Q4,项目:红楼梦,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAD: 季度:Slot-2017-Q4,项目:富饶农场,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.6' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAE: 季度:Slot-2017-Q4,项目:哪吒闹海,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.7' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testAF: 季度:Slot-2017-Q4,项目:金瓶梅,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.7')" >
+        error</a>
+
+    <div id='div_ft2.7' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.7: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 365, in testAF
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.8' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testAG: 季度:Slot-2017-Q4,项目:武松打虎,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.8')" >
+        error</a>
+
+    <div id='div_ft2.8' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.8: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 376, in testAG
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.9' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAH: 季度:Slot-2017-Q4,项目:黑珍珠号,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.10' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAI: 季度:Slot-2017-Q4,项目:七夕情缘,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.11' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAJ: 季度:Slot-2017-Q4,项目:四大美女,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.12' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testAK: 季度:Slot-2017-Q4,项目:女校游泳队,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.12')" >
+        error</a>
+
+    <div id='div_ft2.12' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.12: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 420, in testAK
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.13' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAL: 季度:Slot-2017-Q4,项目:女校啦啦队,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.14' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAM: 季度:Slot-2017-Q4,项目:女校体操队,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.15' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAN: 季度:Slot-2017-Q4,项目:钻石之恋,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.16' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testAO: 季度:Slot-2017-Q4,项目:鸟叔,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.16')" >
+        error</a>
+
+    <div id='div_ft2.16' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.16: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 464, in testAO
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.17' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAP: 季度:Slot-2017-Q4,项目:天龙八部,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.18' class='text text-success'>
+    <td class='text text-danger'><div class='testcase'>testAQ: 季度:Slot-2017-Q4,项目:鹿鼎记,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.18')" >
+        fail</a>
+
+    <div id='div_ft2.18' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.18: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 490, in testAQ
+    self.assertTrue(self.wr.new_record(",".join(data)))
+AssertionError: False is not true
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.19' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAR: 季度:Slot-2017-Q4,项目:笑傲江湖,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.20' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testAS: 季度:Slot-2017-Q4,项目:幸运水果机,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.20')" >
+        error</a>
+
+    <div id='div_ft2.20' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.20: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 508, in testAS
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.21' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAT: 季度:Slot-2017-Q4,项目:众神之王,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.22' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testAU: 季度:Slot-2017-Q4,项目:红粉女郎,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.22')" >
+        error</a>
+
+    <div id='div_ft2.22' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.22: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 530, in testAU
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.23' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testAV: 季度:Slot-2017-Q4,项目:灌篮高手,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.24' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testB: 季度:Slot-2017-Q4,项目:女校橄榄球,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.25' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testC: 季度:Slot-2017-Q3,项目:武圣关云长,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.25')" >
+        error</a>
+
+    <div id='div_ft2.25' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.25: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 46, in testC
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.26' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testD: 季度:Slot-2017-Q4,项目:刺客信条,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.27' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testE: 季度:Slot-2017-Q4,项目:古墓丽影,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.28' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testF: 季度:Slot-2017-Q4,项目:希腊传说,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.28')" >
+        error</a>
+
+    <div id='div_ft2.28' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.28: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 79, in testF
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.29' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testG: 季度:Slot-2017-Q4,项目:吸血鬼与狼人,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.29')" >
+        error</a>
+
+    <div id='div_ft2.29' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.29: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 90, in testG
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 196, in all_agg
+    self.select_we_game(game_name)
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 178, in select_we_game
+    self.browser.find_elements_by_xpath("//span[contains(text(), '" + game_name + "')]")[3].click()
+IndexError: list index out of range
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.30' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testH: 季度:Slot-2017-Q4,项目:梦幻西游,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.31' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testI: 季度:Slot-2017-Q4,项目:女校足球部,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.31')" >
+        error</a>
+
+    <div id='div_ft2.31' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.31: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 112, in testI
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.32' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testJ: 季度:Slot-2017-Q4,项目:女校剑道部,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.33' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testK: 季度:Slot-2017-Q4,项目:绿野仙踪,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.34' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testL: 季度:Slot-2017-Q4,项目:剑侠情缘,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.35' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testM: 季度:Slot-2017-Q4,项目:格斗之王,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.36' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testN: 季度:Slot-2017-Q4,项目:埃菲尔,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.37' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testO: 季度:Slot-2017-Q4,项目:性感女神,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.38' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testP: 季度:Slot-2017-Q4,项目:功夫熊猫,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.39' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testQ: 季度:Slot-2017-Q4,项目:植物大战僵尸,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.40' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testR: 季度:Slot-2017-Q4,项目:阿凡达,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.40')" >
+        error</a>
+
+    <div id='div_ft2.40' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.40').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.40: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 211, in testR
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.41' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testS: 季度:Slot-2017-Q4,项目:新年符号,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.42' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testT: 季度:Slot-2017-Q4,项目:守望英雄,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.43' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testU: 季度:Slot-2017-Q4,项目:世界末日,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt2.44' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testV: 季度:Slot-2017-Q4,项目:现代战争,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft2.45' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testW: 季度:Slot-2017-Q4,项目:甜水绿洲,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.45')" >
+        error</a>
+
+    <div id='div_ft2.45' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.45').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.45: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 266, in testW
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.46' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testX: 季度:Slot-2017-Q4,项目:加勒比海盗,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.46')" >
+        error</a>
+
+    <div id='div_ft2.46' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.46').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.46: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 277, in testX
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.47' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testY: 季度:Slot-2017-Q4,项目:侏罗纪,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.47')" >
+        error</a>
+
+    <div id='div_ft2.47' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.47').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.47: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 288, in testY
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.48' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testZ: 季度:Slot-2017-Q4,项目:玛雅,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.48')" >
+        error</a>
+
+    <div id='div_ft2.48' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.48').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.48: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testB.py", line 299, in testZ
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='text text-warning'>
+    <td>testC.SlotQ1</td>
+    <td>15</td>
+    <td>11</td>
+    <td>0</td>
+    <td>4</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c3',15)">Detail</a></td>
+</tr>
+
+<tr id='ft3.1' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testA: 季度:Slot-2018-Q1,项目:湛蓝深海,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
+        error</a>
+
+    <div id='div_ft3.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.1: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testC.py", line 24, in testA
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.2' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testB: 季度:Slot-2018-Q1,项目:哥谭魅影猫女,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.2')" >
+        error</a>
+
+    <div id='div_ft3.2' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.2: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testC.py", line 35, in testB
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.3' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testC: 季度:Slot-2018-Q1,项目:招财进宝,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.3')" >
+        error</a>
+
+    <div id='div_ft3.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.3: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testC.py", line 46, in testC
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testD: 季度:Slot-2018-Q1,项目:十二生肖,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testE: 季度:Slot-2018-Q1,项目:捕鱼达人,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.6' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testF: 季度:Slot-2018-Q1,项目:愤怒的小鸟,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.7' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testG: 季度:Slot-2018-Q1,项目:十二星座,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.8' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testH: 季度:Slot-2018-Q1,项目:角斗士,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.9' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testI: 季度:Slot-2018-Q1,项目:恭贺新春,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft3.10' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testJ: 季度:Slot-2018-Q1,项目:埃及女王,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.10')" >
+        error</a>
+
+    <div id='div_ft3.10' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.10: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testC.py", line 123, in testJ
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 122, in login_user
+    pass_box.send_keys(self.blizzmi_pass)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 352, in send_keys
+    'value': keys_to_typing(value)})
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;input class="el-input__inner" type="password"&gt; is not reachable by keyboard
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.11' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testK: 季度:Slot-2018-Q1,项目:金狗旺财,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.12' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testL: 季度:Slot-2018-Q1,项目:闹元宵,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.13' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testM: 季度:Slot-2018-Q1,项目:森林舞会,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.14' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testN: 季度:Slot-2018-Q1,项目:神雕侠侣,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt3.15' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testO: 季度:Slot-2018-Q1,项目:抢红包,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr class='text text-warning'>
+    <td>testD.SlotQ2</td>
+    <td>10</td>
+    <td>7</td>
+    <td>0</td>
+    <td>3</td>
+    <td><a class="btn btn-xs btn-primary"href="javascript:showClassDetail('c4',10)">Detail</a></td>
+</tr>
+
+<tr id='ft4.1' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testA: 季度:Slot-2018-Q2,项目:黄金右脚,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.1')" >
+        error</a>
+
+    <div id='div_ft4.1' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft4.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft4.1: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testD.py", line 24, in testA
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testB: 季度:Slot-2018-Q2,项目:人猿泰山,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft4.3' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testC: 季度:Slot-2018-Q2,项目:世界杯吉祥物,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.3')" >
+        error</a>
+
+    <div id='div_ft4.3' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft4.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft4.3: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testD.py", line 46, in testC
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.4' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testD: 季度:Slot-2018-Q2,项目:金球争霸,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt4.5' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testE: 季度:Slot-2018-Q2,项目:潘帕斯雄鹰,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt4.6' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testF: 季度:Slot-2018-Q2,项目:群星闪耀,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt4.7' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testG: 季度:Slot-2018-Q2,项目:激情世界杯,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt4.8' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testH: 季度:Slot-2018-Q2,项目:船长宝藏,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='pt4.9' class='hiddenRow'>
+    <td class='text text-success'><div class='testcase'>testI: 季度:Slot-2018-Q2,项目:金靴争霸,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft4.10' class='text text-success'>
+    <td class='text text-warning'><div class='testcase'>testJ: 季度:Slot-2018-Q2,项目:激情球迷,环境:PRO,用例:游戏能正常运行</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link btn btn-xs btn-default" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.10')" >
+        error</a>
+
+    <div id='div_ft4.10' class="popup_window">
+        <div style='text-align: right;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft4.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft4.10: Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\Slot\test_case\testD.py", line 123, in testJ
+    self.wg.all_agg(",".join(data))
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 192, in all_agg
+    self.login_user()
+  File "C:\Users\Administrator\PycharmProjects\Slot\businessView\WebGame.py", line 126, in login_user
+    self.browser.find_element(*self.again_login_button).click()
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webelement.py", line 501, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 308, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python35\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: Element &lt;span&gt; could not be scrolled into view
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+    </tbody>
+    <tfoot>
+        <tr id='total_row'>
+            <td>Total</td>
+            <td>90</td>
+            <td class="text text-success">60</td>
+            <td class="text text-danger">4</td>
+            <td class="text text-warning">26</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tfoot>
+</table>
+
+    <div id='ending'>&nbsp;</div>
+</div>
+
+</body>
+</html>
