@@ -54,9 +54,9 @@ class WebGame(Common):
     def select_language(self):
         logging.info("==========select_language==========")
         try:
-            self.browser.find_element(*self.element_language).click()
-            # self.browser.find_elements(*self.simplified_chinese)[4].click()
-            text = self.browser.find_element(*self.simplified_chinese).text
+            self.get_element(*self.element_language).click()
+            # self.get_elements(*self.simplified_chinese)[4].click()
+            text = self.get_element(*self.simplified_chinese).text
         except NoSuchElementException:
             logging.error("Select Language NoSuchElementException!")
             self.get_screen_shot("Select Language NoSuchElementException")
@@ -86,14 +86,10 @@ class WebGame(Common):
         try:
             if select == 0:
                 logging.info("选择免转")
-                # self.browser.find_elements(*self.free_button)[1].click()
-                free_button = self.wait.until(lambda x: x.find_elements(*self.free_button)[1])
-                free_button.click()
+                self.get_elements(*self.free_button)[1].click()
             elif select == 1:
                 logging.info("选择非免转")
-                # self.browser.find_elements(*self.free_button)[1].click()
-                free_button = self.wait.until(lambda x: x.find_elements(*self.free_button)[2])
-                free_button.click()
+                self.get_elements(*self.free_button)[2].click()
         except NoSuchElementException:
             logging.error("select_free_rotation NoSuchElementException!")
             self.get_screen_shot("select_free_rotation NoSuchElementException")
@@ -108,22 +104,22 @@ class WebGame(Common):
         logging.info("==========登录大厅用户名==========")
         try:
             logging.info("开始登录")
-            logging_button = self.wait.until(lambda x: x.find_element(*self.login_button))
+            logging_button = self.get_element(*self.login_button)
             logging_button.click()
 
             self.select_free_rotation()
 
             logging.info("输入用户名-密码")
-            user_box = self.wait.until(lambda x: x.find_element(*self.username))
+            user_box = self.get_element(*self.username)
             user_box.send_keys(self.blizzmi_user)
             logging.info("UserName is: %s" % self.blizzmi_user)
 
-            pass_box = self.wait.until(lambda x: x.find_element(*self.password))
+            pass_box = self.get_element(*self.password)
             pass_box.send_keys(self.blizzmi_pass)
             logging.info("PassWord is: %s" % self.blizzmi_pass)
 
             logging.info("点击登录按钮")
-            self.browser.find_element(*self.again_login_button).click()
+            self.get_element(*self.again_login_button).click()
         except NoSuchElementException:
             logging.error("login_user NoSuchElementException!")
             self.get_screen_shot("login_user NoSuchElementException")
@@ -137,7 +133,7 @@ class WebGame(Common):
     def check_login_status(self):
         logging.info("==========检查登录状态==========")
         try:
-            username = self.browser.find_elements(*self.check_login_name)[0].text
+            username = self.get_elements(*self.again_login_button)[0].text
             assert username == self.blizzmi_user
         except AssertionError:
             logging.error("login Fail!")
@@ -151,7 +147,7 @@ class WebGame(Common):
     def select_tiger(self):
         logging.info("==========切换老虎机标签页==========")
         try:
-            self.browser.find_element(*self.element_tiger).click()
+            self.get_element(*self.element_tiger).click()
         except NoSuchElementException:
             logging.error("select_tiger NoSuchElementException!")
             self.get_screen_shot("select_tiger NoSuchElementException")
@@ -161,11 +157,12 @@ class WebGame(Common):
     def lookup_game(self, game_name):
         logging.info("==========大厅搜索游戏项目==========")
         try:
-            self.browser.find_element(*self.text_box).click()
-            self.browser.find_element(*self.text_box).clear()
-            self.browser.find_element(*self.text_box).send_keys(game_name)
+            text_box = self.get_element(*self.text_box)
+            text_box.click()
+            text_box.clear()
+            text_box.send_keys(game_name)
             logging.info("Look Up Game %s" % game_name)
-            self.browser.find_element(*self.search_button).click()
+            self.get_element(*self.search_button).click()
         except NoSuchElementException:
             logging.error("Look Up Game NoSuchElementException!")
             self.get_screen_shot("Look Up Game NoSuchElementException")

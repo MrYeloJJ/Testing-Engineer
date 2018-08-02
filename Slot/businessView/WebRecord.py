@@ -17,7 +17,8 @@ class WebRecord(Common):
     def start_web_record(self):
         logging.info("==========启动新的标签页==========")
         try:
-            js = "window.open('https://static.fg.blizzmi.cn/we_token')"
+            # js = "window.open('https://static.fg.blizzmi.cn/we_token')"
+            js = "window.open('https://h5.fg.blizzmi.cn/we_token?')"
             self.browser.execute_script(js)
             self.browser.implicitly_wait(2)
         except Exception:
@@ -52,7 +53,7 @@ class WebRecord(Common):
     def click_query_button(self):
         logging.info("==========点击查询按钮==========")
         try:
-            self.browser.find_element(*self.query_button).click()
+            self.get_element(*self.query_button).click()
         except NoSuchElementException:
             logging.error("Click query button Fail!")
             self.get_screen_shot("Click query button Fail")
@@ -67,9 +68,11 @@ class WebRecord(Common):
         logging.info("开始时间: %s" % start_time)
         while True:
             try:
-                game_element = self.browser.find_elements_by_xpath("//div[text()='" + game_name + "']")
+                # game_element = self.browser.find_elements_by_xpath("//div[text()='" + game_name + "']")
+                game_element = self.wait.until(lambda x: x.find_elements(By.XPATH, "//div[text()='" + game_name + "']"))
                 if len(game_element) == 0:
-                    one_game = self.browser.find_element_by_xpath("//div[text()='" + game_name + "']").text
+                    # one_game = self.browser.find_element_by_xpath("//div[text()='" + game_name + "']").text
+                    one_game = self.wait.until(lambda x: x.find_element(By.XPATH, "//div[text()='" + game_name + "']"))
                     assert one_game == game_name
                 else:
                     game_text = game_element[0].text
@@ -98,6 +101,7 @@ class WebRecord(Common):
         self.switch_tab_web()
         self.check_record_title()
         self.click_query_button()
+        self.new_record("激情世界杯")
 
 
 if __name__ == '__main__':

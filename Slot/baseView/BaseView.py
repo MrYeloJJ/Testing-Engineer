@@ -12,14 +12,16 @@ class BaseView(object):
         self.add_script = "window.frames[0].frames."  # 需要可视化需改为 "window.frames[0].frames."
 
     # 定位单个元素
-    def find_element(self, *loc):
+    def get_element(self, *loc):
         logging.info("==========find_element==========")
-        return self.browser.find_element(*loc)
+        element = self.wait.until(lambda x: x.find_element(*loc))
+        return element
 
     # 定位一组元素
-    def find_elements(self, *loc):
+    def get_elements(self, *loc):
         logging.info("==========find_elements==========")
-        return self.browser.find_elements(*loc)
+        elements = self.wait.until(lambda x: x.find_elements(*loc))
+        return elements
 
     # 设置全屏
     def horizontal_screen(self):
