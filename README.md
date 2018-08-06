@@ -2,4 +2,5 @@
 * 项目：Slot（老虎机）
 * Author：Mr.YeloJJ
 >## **框架示意图**
+[知道你看不清](https://github.com/MrYeloJJ/WebGame_Slot/blob/master/image/Web%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6.xmind, '那不还快点下载来看~')
 ![哎呀，图片不见啦！](https://github.com/MrYeloJJ/WebGame_Slot/blob/master/image/Web%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6.png)
